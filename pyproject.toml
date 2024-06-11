@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "evalgen"
+version = "0.1.0"
+description = ""
+authors = ["John Halz <john@validmind.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.1"
+pytest = "^8.2.2"
+ruff = "^0.4.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
