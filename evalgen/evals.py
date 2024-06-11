@@ -47,8 +47,11 @@ class EvalBase(ABC):
 
 @dataclass
 class ComputedEval(EvalBase):
-    _type: str = "computed"
     code: str
+
+    @property
+    def _type(self):
+        return "computed"
 
     def eval(self, prompt: str, response: str) -> bool:
         local_context = {"prompt": prompt, "response": response}
@@ -78,8 +81,11 @@ class ComputedEval(EvalBase):
 
 @dataclass
 class LLMAssistedEval(EvalBase):
-    _type: str = "llm_assisted"
     assertion: str
+
+    @property
+    def _type(self):
+        return "llm_assisted"
 
     def eval(self, prompt: str, response: str) -> bool:
         _ = prompt  # unused for now
@@ -96,6 +102,7 @@ class LLMAssistedEval(EvalBase):
                 },
             ],
         )
+        print(response)
 
         aliases = {
             # true

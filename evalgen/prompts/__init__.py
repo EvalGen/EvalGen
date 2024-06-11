@@ -15,8 +15,6 @@ jinja_files = list(Path(__file__).parent.glob("*.jinja"))
 # for each file, create a jinja template and store it in a module variable
 for jinja_file in jinja_files:
     name = jinja_file.stem
-    module_variable = f"prompt_{name}"
-
     content = jinja_file.read_text()
 
     # split out system and user messages
@@ -28,8 +26,11 @@ for jinja_file in jinja_files:
         Template(system_prompt) if system_prompt else None,
         Template(user_prompt),
     )
+    print(prompt)
 
-    setattr(sys.modules[__name__], module_variable, prompt)
+    print(f"Creating module variable: {name}")
+
+    setattr(sys.modules[__name__], name, prompt)
 
 # example usage
 # from evalgen.prompts import prompt_evaluate as eval_prompt
